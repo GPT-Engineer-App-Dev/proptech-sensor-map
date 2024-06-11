@@ -1,10 +1,15 @@
 import { Box, Text, VStack } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 
 const BuildingInfoCard = ({ building }) => {
   if (!building) return null;
 
+  const MotionBox = motion(Box);
+
   return (
-    <Box
+    <MotionBox
+      animate={{ x: [0, 20, -20, 0] }}
+      transition={{ duration: 2, repeat: Infinity, repeatType: "loop" }}
       position="absolute"
       top="10px"
       left="10px"
@@ -22,7 +27,7 @@ const BuildingInfoCard = ({ building }) => {
         <Text>Humidity: {building.sensorData.humidity}%</Text>
         <Text>CO2 Levels: {building.sensorData.co2} ppm</Text>
       </VStack>
-    </Box>
+    </MotionBox>
   );
 };
 
